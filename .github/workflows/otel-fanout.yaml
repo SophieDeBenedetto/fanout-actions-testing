@@ -26,10 +26,11 @@ jobs:
 
       - name: List GitHub::Logger callsites that need to be migrated to SemConv log fields.
         id: list_callsites
+        shell: bash
         env:
           SERVICE_TEAM: ${{ inputs.service_team }}
         run: |
-          callsites=$("file_one file_two file_three")
+          callsites=$(file_one file_two file_three)
           callsites=($callsites)
           callsite_markup="<ul>"
           for i in "${callsites[@]}"
