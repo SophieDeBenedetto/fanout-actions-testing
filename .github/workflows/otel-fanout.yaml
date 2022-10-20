@@ -2,15 +2,15 @@
 # It automates the process of opening a fanout issue, assigning that issue appropriately,
 # and flagging the necessary code changes to conform logs to GitHub Flavored OTel SemConv
 name: Create Monolith OTel Fanout issue
-
-workflow_dispatch:
-  inputs:
-    service_team:
-      description: 'The logical service owner team whose owned filed you want to flag for migration to SemConv logs.'
-      required: true
-    issue_assignees:
-      description: "A comma-separated list of teams or individuals to assign the fanout issue to."
-      required: false
+on:
+  workflow_dispatch:
+    inputs:
+      service_team:
+        description: 'The logical service owner team whose owned filed you want to flag for migration to SemConv logs.'
+        required: true
+      issue_assignees:
+        description: "A comma-separated list of teams or individuals to assign the fanout issue to."
+        required: false
 
 jobs:
   build:
