@@ -30,16 +30,15 @@ jobs:
         env:
           SERVICE_TEAM: ${{ inputs.service_team }}
         run: |
-          callsites="hi"
-          echo $callsites
-          # callsites=($callsites)
-          # callsite_markup="<ul>"
-          # for i in "${callsites[@]}"
-          # do
-          #   callsite_markup+="<li>${i}</li>"
-          # done
-          # callsite_markup+="</ul>"
-          # echo "::set-output name=LOGGER_CALLSITES::$(callsite_markup)"
+          callsites="file_one file_two file_three"
+          callsites=($callsites)
+          callsite_markup="<ul>"
+          for i in "${callsites[@]}"
+          do
+            callsite_markup+="<li>${i}</li>"
+          done
+          callsite_markup+="</ul>"
+          echo "::set-output name=LOGGER_CALLSITES::$(callsite_markup)"
       - name: Create fanout issue
         uses: JasonEtco/create-an-issue@v2
         env:
