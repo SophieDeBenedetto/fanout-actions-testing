@@ -12,5 +12,5 @@ do it.
 
 <details>
 <summary>Click to see `GitHub::Logger` callsites that need updating</summary>
-{{env.logger_callsites}}
+{{env.LOGGER_CALLSITES}}
 </details>
