@@ -1,0 +1,49 @@
+# This workflow supports the Monolith OpenTelemetry Semantic Logging fanout work.
+# It automates the process of opening a fanout issue, assigning that issue appropriately,
+# and flagging the necessary code changes to conform logs to GitHub Flavored OTel SemConv
+name: Create Monolith OTel Fanout issue
+
+workflow_dispatch:
+  inputs:
+    service_team:
+      description: 'The logical service owner team whose owned filed you want to flag for migration to SemConv logs.'
+      required: true
+    issue_assignees:
+      description: "A comma-separated list of teams or individuals to assign the fanout issue to."
+      required: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.0.x
+
+      - name: List GitHub::Logger callsites that need to be migrated to SemConv log fields.
+        id: list_callsites
+        env:
+          SERVICE_TEAM: ${{ inputs.service_team }}
+        run: |
+          callsites=$(file_one file_two file_three)
+          callsites=($callsites)
+          callsite_markup="<ul>"
+          for i in "${callsites[@]}"
+          do
+            callsite_markup+="<li>${i}</li>"
+          done
+          callsite_markup+="</ul>"
+          echo "::set-output name=LOGGER_CALLSITES::$(callsite_markup)"
+      - name: Create fanout issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LOGGER_CALLSITES: "${{ steps.list_callsites.outputs.LOGGER_CALLSITES }}"
+        with:
+          filename: .github/otel-fanout-issue.md
+          assignees: ${inputs.assignees}
+        run: 'echo Created ${{ steps.create-issue.outputs.url }}'
