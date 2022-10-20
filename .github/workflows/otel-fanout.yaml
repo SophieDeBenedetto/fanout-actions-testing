@@ -47,4 +47,3 @@ jobs:
           LOGGER_CALLSITES: "${{ steps.list_callsites.outputs.LOGGER_CALLSITES }}"
         with:
           filename: .github/otel-fanout-issue.md
-          assignees: ${inputs.issue_assignees}
