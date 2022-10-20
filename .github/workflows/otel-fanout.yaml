@@ -43,6 +43,6 @@ jobs:
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LOGGER_CALLSITES: "${{ steps.list_callsites.outputs.LOGGER_CALLSITES }}"
+          LOGGER_CALLSITES: "HELLO"
         with:
           filename: .github/otel-fanout-issue.md
