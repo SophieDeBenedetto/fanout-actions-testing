@@ -46,4 +46,3 @@ jobs:
         with:
           filename: .github/otel-fanout-issue.md
           assignees: ${inputs.assignees}
-        run: 'echo Created ${{ steps.create-issue.outputs.url }}'
