@@ -35,7 +35,7 @@ jobs:
           callsite_markup="<ul>"
           for i in "${callsites[@]}"
           do
-            callsite_markup+="<li>${i}</li>"
+            callsite_markup+="<li><a href="${i}">${i}</a></li>"
           done
           callsite_markup+="</ul>"
           echo "LOGGER_CALLSITES=$callsite_markup" >> $GITHUB_ENV
