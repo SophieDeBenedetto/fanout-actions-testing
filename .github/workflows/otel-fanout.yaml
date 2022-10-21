@@ -46,4 +46,4 @@ jobs:
           LOGGER_CALLSITES: "${{ env.LOGGER_CALLSITES }}"
         with:
           filename: .github/otel-fanout-issue.md
-          assignees: ${{ inputs.issue_assignees }}
+          assignees: "${{ inputs.issue_assignees }}, sophiedebenedetto"
