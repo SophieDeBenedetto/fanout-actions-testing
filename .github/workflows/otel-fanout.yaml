@@ -30,12 +30,13 @@ jobs:
         env:
           SERVICE_TEAM: ${{ inputs.service_team }}
         run: |
-          callsites="https://github.com/SophieDeBenedetto/fanout-actions-testing/blob/main/README.md#fanout-actions-testing file_two file_three"
+          commit=`git show --pretty=%H -q`
+          callsites="README.md#L1 file_two file_three"
           callsites=($callsites)
           callsite_markup="<ul>"
           for i in "${callsites[@]}"
           do
-            callsite_markup+="<li><a href="${i}">${i}</a></li>"
+            callsite_markup+="<li><a href="https://github.com/github/github/blob/${commit}/${i}">${i}</a></li>"
           done
           callsite_markup+="</ul>"
           echo "LOGGER_CALLSITES=$callsite_markup" >> $GITHUB_ENV
