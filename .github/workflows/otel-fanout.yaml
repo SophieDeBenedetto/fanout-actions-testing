@@ -39,7 +39,6 @@ jobs:
           done
           callsite_markup+="</ul>"
           echo "LOGGER_CALLSITES=$callsite_markup" >> $GITHUB_ENV
-          # echo "::set-output name=LOGGER_CALLSITES::$("HELLO!!!")"
       - name: Create fanout issue
         uses: JasonEtco/create-an-issue@v2
         env:
@@ -47,3 +46,4 @@ jobs:
           LOGGER_CALLSITES: "${{ env.LOGGER_CALLSITES }}"
         with:
           filename: .github/otel-fanout-issue.md
+          assignees: ${{ inputs.issue_assignees }}

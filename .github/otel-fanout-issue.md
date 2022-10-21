@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry SemConv Logging Fanout
-assignees: sophiedebenedetto
+# assignees: sophiedebenedetto
 labels: otel
 ---
 
