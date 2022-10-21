@@ -38,11 +38,12 @@ jobs:
             callsite_markup+="<li>${i}</li>"
           done
           callsite_markup+="</ul>"
-          echo "::set-output name=LOGGER_CALLSITES::$("HELLO!!!")"
+          echo "LOGGER_CALLSITES=$callsite_markup" >> $GITHUB_ENV
+          # echo "::set-output name=LOGGER_CALLSITES::$("HELLO!!!")"
       - name: Create fanout issue
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LOGGER_CALLSITES: "${{ steps.list_callsites.outputs.LOGGER_CALLSITES }}"
+          LOGGER_CALLSITES: "${{ env.LOGGER_CALLSITES }}"
         with:
           filename: .github/otel-fanout-issue.md
