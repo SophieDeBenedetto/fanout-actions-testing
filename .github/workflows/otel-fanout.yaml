@@ -31,7 +31,7 @@ jobs:
           SERVICE_TEAM: ${{ inputs.service_team }}
         run: |
           commit=`git show --pretty=%H -q`
-          callsites="README.md#L1 file_two file_three"
+          callsites="fake.rb#L2 file_two file_three"
           callsites=($callsites)
           callsite_markup="<ul>"
           for i in "${callsites[@]}"
