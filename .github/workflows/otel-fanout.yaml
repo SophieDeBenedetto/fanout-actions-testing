@@ -30,7 +30,7 @@ jobs:
         env:
           SERVICE_TEAM: ${{ inputs.service_team }}
         run: |
-          callsites="file_one file_two file_three"
+          callsites="https://github.com/SophieDeBenedetto/fanout-actions-testing/blob/main/README.md#fanout-actions-testing file_two file_three"
           callsites=($callsites)
           callsite_markup="<ul>"
           for i in "${callsites[@]}"
